@@ -27,6 +27,7 @@ const followersArray = [
   'bigknell',
   'nicole-pizzano'
 ]; //let's itterate through these smart people and add it the page
+
 const otherAccts = followersArray.forEach(el => {
   axios.get('https://api.github.com/users/' + el)
        .then(res => {
@@ -36,7 +37,7 @@ const otherAccts = followersArray.forEach(el => {
 .catch(console.log('error or waiting'));
 });
 console.log(otherAccts)
-
+ 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
