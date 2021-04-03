@@ -4,6 +4,39 @@
     https://api.github.com/users/<your name>
 */
 
+//import axios from "axios"
+
+
+
+let myData = axios.get('https://api.github.com/users/nicole-pizzano') 
+.then((res) => {
+   console.log(res.data)
+
+})
+.catch((err) => {
+  console.log('error')
+});
+
+
+
+const followersArray = [
+  'tetondan',
+'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell',
+  'nicole-pizzano'
+]; //let's itterate through these smart people and add it the page
+const otherAccts = followersArray.forEach(el => {
+  axios.get('https://api.github.com/users/' + el)
+       .then(res => {
+  // console.log('success');
+  gitActMaker(res);
+})
+.catch(console.log('error or waiting'));
+});
+console.log(otherAccts)
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +61,8 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -58,3 +92,58 @@ const followersArray = [];
     luishrd
     bigknell
 */
+function gitActMaker(singleObject) {
+  // DECLARE VARS SET VALUES AND APPEND IN ORDER
+  // DIV CLASS CARD
+  console.log(singleObject);
+  let divCard = document.createElement('div');
+  divCard.classList.add('card');
+  // PROFILE IMAGE
+  let userImg = document.createElement('img');
+  userImg.src = singleObject.data.avatar_url;
+  divCard.appendChild(userImg);
+  // DIV CLASS CARD INFO
+  let divInfo = document.createElement('div');
+  divInfo.classList.add('card-info');
+  divCard.appendChild(divInfo);
+  // H3 CLASS NAME
+  let name = document.createElement('h3');
+  name.classList.add('name');
+  name.textContent = singleObject.data.name;
+  divInfo.appendChild(name);
+  // P CLASS USERNAME
+  let username = document.createElement('p');
+  username.classList.add('username');
+  username.textContent = singleObject.data.login;
+  divInfo.appendChild(username);
+  // P LOCATION
+  let locP = document.createElement('p');
+  // console.log(locP);
+  locP.textContent = 'Location: ' + singleObject.data.location;
+  divInfo.appendChild(locP);
+  // P PROFILE
+  let profile = document.createElement('p');
+  profile.textContent = ('Profile:' + '\n');
+  divInfo.appendChild(profile);
+  // ADDRESS TO PAGE
+  let address = document.createElement('a');
+  address.href = singleObject.data.html_url;
+  address.textContent = singleObject.data.html_url;
+  profile.appendChild(address);
+  // P FOLLOWERS
+  let followers = document.createElement('p');
+  followers.textContent = `Followers: ${singleObject.data.followers}`
+  divInfo.appendChild(followers);
+  // P FOLLOWING
+  let following = document.createElement('p');
+  following.textContent = `Following: ${singleObject.data.following}`;
+  divInfo.appendChild(following);
+  // P BIO
+  let bio = document.createElement('p');
+  bio.textContent = `Bio: ${singleObject.data.bio}`;
+  divInfo.appendChild(bio);
+  // APPEND TO PAGE
+  let divCardLoc = document.querySelector('div.cards');
+  divCardLoc.appendChild(divCard);
+  return divCard;
+}
