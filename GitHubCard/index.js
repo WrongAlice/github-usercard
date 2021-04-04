@@ -19,7 +19,7 @@ let myData = axios.get('https://api.github.com/users/nicole-pizzano')
 
 
 
-const followersArray = [
+const morePeepsArray = [
   'tetondan',
 'dustinmyers',
   'justsml',
@@ -28,15 +28,15 @@ const followersArray = [
   'nicole-pizzano'
 ]; //let's itterate through these smart people and add it the page
 
-const otherAccts = followersArray.forEach(el => {
+const moreAccts = morePeepsArray.forEach(el => {
   axios.get('https://api.github.com/users/' + el)
        .then(res => {
   // console.log('success');
   gitActMaker(res);
 })
-.catch(console.log('error or waiting'));
+.catch(console.log('error/ waiting'));
 });
-console.log(otherAccts)
+console.log(moreAccts)
  
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
