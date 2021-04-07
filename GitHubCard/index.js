@@ -32,7 +32,7 @@ const moreAccts = morePeepsArray.forEach(el => {
   axios.get('https://api.github.com/users/' + el)
        .then(res => {
   // console.log('success');
-  gitActMaker(res);
+  gitMaker(res);
 })
 .catch(console.log('error/ waiting'));
 });
@@ -93,7 +93,7 @@ console.log(moreAccts)
     luishrd
     bigknell
 */
-function gitActMaker(singleObject) {
+function gitMaker(singleObject) {
   // DECLARE VARS SET VALUES AND APPEND IN ORDER
   // DIV CLASS CARD
   console.log(singleObject);
