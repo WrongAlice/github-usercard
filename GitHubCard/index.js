@@ -3,15 +3,14 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-
+import React from 'react';
 import axios from "axios"
 
 
 
-let myData = axios.get('https://api.github.com/users/nicole-pizzano') 
+let myData = axios.get('https://api.github.com/users/WrongAlice') 
 .then((res) => {
    console.log(res.data)
-
 })
 .catch((err) => {
   console.log('error')
@@ -25,7 +24,7 @@ const morePeepsArray = [
   'justsml',
   'luishrd',
   'bigknell',
-  'nicole-pizzano'
+  'WrongAlice'
 ]; //let's itterate through these smart people and add it the page
 
 const moreAccts = morePeepsArray.forEach(el => {
