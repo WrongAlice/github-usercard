@@ -35,7 +35,7 @@ const moreAccts = morePeepsArray.forEach(el => {
 })
 .catch(console.log('error/ waiting'));
 });
-console.log(moreAccts)
+// console.log(moreAccts)
  
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
